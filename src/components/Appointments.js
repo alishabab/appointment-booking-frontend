@@ -8,33 +8,37 @@ const Appointments = () => {
   const [loading, setLoading] = useState(true);
   const { user: currentUser } = useSelector(state => state.auth);
 
+  useEffect(() => {
+    if (currentUser) {
+      UserService.getAppointments(currentUser.user.id).then(
+        response => {
+          setLoading(false);
+          setContent(response.data);
+        },
+        error => {
+          setLoading(false);
+          const message = (error.response
+              && error.response.data
+              && error.response.data.message)
+            || error.message
+            || error.toString();
+          setContent(message);
+        },
+      );
+    }
+  }, []);
+
   if (!currentUser) {
     return <Redirect to="/login" />;
   }
-  useEffect(() => {
-    UserService.getAppointments(currentUser.user.id).then(
-      response => {
-        setLoading(false);
-        setContent(response.data);
-      },
-      error => {
-        setLoading(false);
-        const message = (error.response
-            && error.response.data
-            && error.response.data.message)
-          || error.message
-          || error.toString();
 
-        setContent(message);
-      },
-    );
-  }, []);
   const appointments = content && content.map(appointment => (
     <Link to={`/appointments/${appointment.id}`} key={appointment.id}>
       <p>{appointment.appointment_date}</p>
       <p>{content.doctor_id}</p>
     </Link>
   ));
+
   return (
     <div className="container">
       <header className="jumbotron">
