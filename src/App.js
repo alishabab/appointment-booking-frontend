@@ -11,7 +11,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Profile from './components/Profile';
 import Doctors from './components/Doctors';
-
+import Doctor from './components/Doctor';
 import { logout } from './actions/auth';
 import { clearMessage } from './actions/message';
 
@@ -84,6 +84,7 @@ const App = () => {
             <Route exact path="/register" component={Register} />
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/doctors" component={Doctors} />
+            <Route exact path="/doctors/:id" component={Doctor} />
           </Switch>
         </div>
       </div>

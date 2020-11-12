@@ -29,14 +29,14 @@ const Doctors = () => {
   }, []);
   console.log(content);
   const doctors = content && content.map(doctor => (
-    <Link to={`/doctor/${doctor.id}`} key={doctor.id}>
+    <Link to={`/doctors/${doctor.id}`} key={doctor.id}>
       <p>{doctor.name}</p>
     </Link>
   ));
   return (
     <div className="container">
       <header className="jumbotron">
-        <h3>Hi</h3>
+        <h3>Doctors</h3>
         {doctors}
       </header>
     </div>
