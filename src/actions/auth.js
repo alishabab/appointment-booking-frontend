@@ -15,6 +15,7 @@ export const register = (name, email, password) => dispatch => AuthService.regis
   response => {
     dispatch({
       type: REGISTER_SUCCESS,
+      payload: { user: response.data },
     });
 
     dispatch({
