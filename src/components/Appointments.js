@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Redirect, useParams } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import UserService from '../services/user.service';
 
-const Doctor = () => {
+const Appointments = () => {
   const [content, setContent] = useState('');
   const [loading, setLoading] = useState(true);
   const { user: currentUser } = useSelector(state => state.auth);
@@ -11,9 +11,8 @@ const Doctor = () => {
   if (!currentUser) {
     return <Redirect to="/login" />;
   }
-  const { id } = useParams();
   useEffect(() => {
-    UserService.getDoctor(id).then(
+    UserService.getAppointments(currentUser.user.id).then(
       response => {
         setLoading(false);
         setContent(response.data);
@@ -30,26 +29,23 @@ const Doctor = () => {
       },
     );
   }, []);
+  const appointments = content && content.map(appointment => (
+    <Link to={`/appointments/${appointment.id}`} key={appointment.id}>
+      <p>{appointment.appointment_date}</p>
+      <p>{content.doctor_id}</p>
+    </Link>
+  ));
   return (
     <div className="container">
       <header className="jumbotron">
+        <h3>Appointments</h3>
         {loading && <span className="spinner-border spinner-border-lg" />}
-        <img src={content.image} alt={content.name} style={{ width: '200px' }} />
-        <p>
-          Name:
-          {content.name}
-        </p>
-        <p>
-          Qualification:
-          {content.qualification}
-        </p>
-        <p>
-          Experience:
-          {content.experience}
-        </p>
+        <div>
+          {appointments}
+        </div>
       </header>
     </div>
   );
 };
 
-export default Doctor;
+export default Appointments;

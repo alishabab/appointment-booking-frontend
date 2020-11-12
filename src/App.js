@@ -12,6 +12,8 @@ import Register from './components/Register';
 import Profile from './components/Profile';
 import Doctors from './components/Doctors';
 import Doctor from './components/Doctor';
+import Appointments from './components/Appointments';
+import Appointment from './components/Appointment';
 import { logout } from './actions/auth';
 import { clearMessage } from './actions/message';
 
@@ -52,6 +54,11 @@ const App = () => {
                 </Link>
               </li>
               <li className="nav-item">
+                <Link to="/appointments" className="nav-link">
+                  Appointments
+                </Link>
+              </li>
+              <li className="nav-item">
                 <Link to="/profile" className="nav-link">
                   {currentUser.user.name}
                 </Link>
@@ -85,6 +92,8 @@ const App = () => {
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/doctors" component={Doctors} />
             <Route exact path="/doctors/:id" component={Doctor} />
+            <Route exact path="/appointments" component={Appointments} />
+            <Route exact path="/appointments/:id" component={Appointment} />
           </Switch>
         </div>
       </div>

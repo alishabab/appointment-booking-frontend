@@ -6,6 +6,7 @@ import UserService from '../services/user.service';
 
 const Doctors = () => {
   const [content, setContent] = useState('');
+  const [loading, setLoading] = useState(true);
   const { user: currentUser } = useSelector(state => state.auth);
 
   if (!currentUser) {
@@ -14,9 +15,11 @@ const Doctors = () => {
   useEffect(() => {
     UserService.getDoctors().then(
       response => {
+        setLoading(false);
         setContent(response.data);
       },
       error => {
+        setLoading(false);
         const message = (error.response
             && error.response.data
             && error.response.data.message)
@@ -30,6 +33,7 @@ const Doctors = () => {
   console.log(content);
   const doctors = content && content.map(doctor => (
     <Link to={`/doctors/${doctor.id}`} key={doctor.id}>
+      <img src={doctor.image} alt={doctor.name} className="img-thumbnail" style={{ width: '300px' }} />
       <p>{doctor.name}</p>
     </Link>
   ));
@@ -37,7 +41,10 @@ const Doctors = () => {
     <div className="container">
       <header className="jumbotron">
         <h3>Doctors</h3>
-        {doctors}
+        {loading && <span className="spinner-border spinner-border-lg" />}
+        <div className="d-flex flex-wrap justify-content-between">
+          {doctors}
+        </div>
       </header>
     </div>
   );

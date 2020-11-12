@@ -3,9 +3,10 @@ import { Redirect, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import UserService from '../services/user.service';
 
-const Doctor = () => {
+const Appointment = () => {
   const [content, setContent] = useState('');
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   const { user: currentUser } = useSelector(state => state.auth);
 
   if (!currentUser) {
@@ -13,13 +14,14 @@ const Doctor = () => {
   }
   const { id } = useParams();
   useEffect(() => {
-    UserService.getDoctor(id).then(
+    UserService.getAppointment(currentUser.user.id, id).then(
       response => {
         setLoading(false);
         setContent(response.data);
       },
       error => {
         setLoading(false);
+        setError(true);
         const message = (error.response
             && error.response.data
             && error.response.data.message)
@@ -34,22 +36,20 @@ const Doctor = () => {
     <div className="container">
       <header className="jumbotron">
         {loading && <span className="spinner-border spinner-border-lg" />}
-        <img src={content.image} alt={content.name} style={{ width: '200px' }} />
-        <p>
-          Name:
-          {content.name}
-        </p>
-        <p>
-          Qualification:
-          {content.qualification}
-        </p>
-        <p>
-          Experience:
-          {content.experience}
-        </p>
+        {
+          !error && (
+          <p>
+            Doctor Id:
+            {content.doctor_id}
+          </p>
+          )
+        }
+        {
+          error && <p>{content}</p>
+        }
       </header>
     </div>
   );
 };
 
-export default Doctor;
+export default Appointment;
