@@ -23,7 +23,7 @@ const required = value => {
   return null;
 };
 
-const NewAppointment = () => {
+const NewAppointment = ({ location }) => {
   const form = useRef();
   const checkBtn = useRef();
   const { user: currentUser } = useSelector(state => state.auth);
@@ -36,6 +36,11 @@ const NewAppointment = () => {
   const { doctors } = useSelector(state => state.user);
   const dispatch = useDispatch();
   useEffect(() => {
+    if (location.doctorId) {
+      setDoctorId(location.doctorId);
+    } else {
+      setDoctorId(1);
+    }
     if (doctors.length === 0 && currentUser) {
       setLoadingDoctors(true);
       dispatch(getDoctors())
@@ -96,7 +101,7 @@ const NewAppointment = () => {
   if (!currentUser) {
     return <Redirect to="/login" />;
   }
-
+  console.log(location);
   if (successful) {
     return <Redirect to="/appointments" />;
   }

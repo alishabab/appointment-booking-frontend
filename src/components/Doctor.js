@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Redirect, useParams } from 'react-router-dom';
+import { Redirect, Link, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import UserService from '../services/user.service';
 
@@ -32,22 +32,31 @@ const Doctor = () => {
   }, []);
   return (
     <div className="container">
-      <header className="jumbotron">
-        {loading && <span className="spinner-border spinner-border-lg" />}
-        <img src={content.image} alt={content.name} style={{ width: '200px' }} />
-        <p>
-          Name:
-          {content.name}
-        </p>
-        <p>
-          Qualification:
-          {content.qualification}
-        </p>
-        <p>
-          Experience:
-          {content.experience}
-        </p>
-      </header>
+      {loading && <span className="spinner-border spinner-border-lg" />}
+      <img src={content.image} alt={content.name} style={{ width: '200px' }} />
+      <p>
+        Name:
+        {content.name}
+      </p>
+      <p>
+        Qualification:
+        {content.qualification}
+      </p>
+      <p>
+        Experience:
+        {content.experience}
+      </p>
+      <li className="nav-item">
+        <Link
+          to={{
+            pathname: '/appointments/new',
+            doctorId: content.id,
+          }}
+          className="nav-link"
+        >
+          Add Appointment
+        </Link>
+      </li>
     </div>
   );
 };
