@@ -56,7 +56,7 @@ const vpassword = value => {
   return null;
 };
 
-const Register = props => {
+const Register = () => {
   const form = useRef();
   const checkBtn = useRef();
 
@@ -96,7 +96,6 @@ const Register = props => {
         .then(() => {
           setLoading(false);
           setSuccessful(true);
-          props.history.push('/profile');
           window.location.reload();
         })
         .catch(() => {

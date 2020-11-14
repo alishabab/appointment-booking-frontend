@@ -1,10 +1,11 @@
+/* eslint-disable no-console */
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import getDoctors from '../actions/user';
 
-const Doctors = props => {
+const Doctors = () => {
   const { user: currentUser } = useSelector(state => state.auth);
   const { doctors } = useSelector(state => state.user);
   const { message } = useSelector(state => state.message);
@@ -17,7 +18,6 @@ const Doctors = props => {
       setLoading(true);
       dispatch(getDoctors())
         .then(() => {
-          props.history.push('/doctors');
           setSuccessful(true);
           setLoading(false);
         })

@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable react/prop-types */
 /* eslint-disable no-underscore-dangle */
 import React, { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -21,7 +20,7 @@ const required = value => {
   return '';
 };
 
-const Login = props => {
+const Login = () => {
   const form = useRef();
   const checkBtn = useRef();
 
@@ -54,8 +53,7 @@ const Login = props => {
     if (checkBtn.current.context._errors.length === 0) {
       dispatch(login(email, password))
         .then(() => {
-          props.history.push('/profile');
-          window.location.reload();
+          setLoading(false);
         })
         .catch(() => {
           setLoading(false);
