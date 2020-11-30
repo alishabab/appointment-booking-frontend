@@ -6,7 +6,7 @@ import {
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
-import NavBarr from './components/Navbarr';
+import Sidebar from './components/Sidebar';
 import Home from './components/Home';
 import Login from './components/Login';
 import Register from './components/Register';
@@ -27,7 +27,7 @@ const App = () => {
 
   return (
     <div>
-      <NavBarr />
+      <Sidebar />
       <main>
         <Switch>
           <Route exact path={['/', '/home']} component={Home} />
