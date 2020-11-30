@@ -3,6 +3,10 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import Carousel from 'react-multi-carousel';
+import SocialIcons from './UI/SocialIcons';
+import 'react-multi-carousel/lib/styles.css';
+import classes from '../styles/Doctors.module.css';
 import getDoctors from '../actions/user';
 
 const Doctors = () => {
@@ -32,21 +36,76 @@ const Doctors = () => {
   }
 
   const doctorsList = doctors.map(doctor => (
-    <Link to={`/doctors/${doctor.id}`} key={doctor.id}>
-      <img src={doctor.image} alt={doctor.name} className="img-thumbnail" style={{ width: '300px' }} />
-      <p>{doctor.name}</p>
-    </Link>
+    <div key={doctor.id}>
+      <Link to={`/doctors/${doctor.id}`} className={classes.Doctors}>
+        <div className="d-flex flex-column align-items-center">
+          <img src={doctor.image} alt={doctor.name} className={`rounded-circle ${classes.img}`} />
+          <h5 className={`text-dark p-4 ${classes.border}`}>{doctor.name}</h5>
+          <p className="text-secondary mt-3">
+            <strong>Qualification:&nbsp;</strong>
+            {doctor.qualification}
+          </p>
+        </div>
+      </Link>
+      <SocialIcons />
+    </div>
   ));
-
   return (
     <div className="container">
-      <header className="jumbotron">
-        <h3>Doctors</h3>
-        {loading && <span className="spinner-border spinner-border-lg" />}
-        <div className="d-flex flex-wrap justify-content-between">
-          {doctorsList}
-        </div>
-      </header>
+      <div className="text-center m-5">
+        <h3>LIST OF DOCTORS</h3>
+        <p className="text-secondary">Please select a doctor to view details</p>
+      </div>
+      {loading && <span className="spinner-border spinner-border-lg" />}
+      <Carousel
+        additionalTransfrom={0}
+        arrows
+        autoPlaySpeed={3000}
+        centerMode={false}
+        className=""
+        containerClass="container"
+        dotListClass=""
+        draggable
+        focusOnSelect={false}
+        infinite={false}
+        itemClass=""
+        keyBoardControl
+        minimumTouchDrag={80}
+        renderButtonGroupOutside={false}
+        renderDotsOutside={false}
+        responsive={{
+          desktop: {
+            breakpoint: {
+              max: 3000,
+              min: 1024,
+            },
+            items: 3,
+            partialVisibilityGutter: 40,
+          },
+          mobile: {
+            breakpoint: {
+              max: 464,
+              min: 0,
+            },
+            items: 1,
+            partialVisibilityGutter: 30,
+          },
+          tablet: {
+            breakpoint: {
+              max: 1024,
+              min: 464,
+            },
+            items: 2,
+            partialVisibilityGutter: 30,
+          },
+        }}
+        showDots={false}
+        sliderClass=""
+        slidesToSlide={1}
+        swipeable
+      >
+        {doctorsList}
+      </Carousel>
       {message && (
         <div className="form-group">
           <div className={successful ? 'alert alert-success' : 'alert alert-danger'} role="alert">

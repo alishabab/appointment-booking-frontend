@@ -1,0 +1,12 @@
+.Doctors:hover {
+  text-decoration: none;
+}
+
+.img {
+  max-width: 220px;
+  max-height: 200px;
+}
+
+.border {
+  border-bottom: 2px dotted gray;
+}
