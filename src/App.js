@@ -6,7 +6,7 @@ import {
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
-import NavBar from './components/Navbar';
+import NavBarr from './components/Navbarr';
 import Home from './components/Home';
 import Login from './components/Login';
 import Register from './components/Register';
@@ -27,18 +27,20 @@ const App = () => {
 
   return (
     <div>
-      <NavBar />
-      <Switch>
-        <Route exact path={['/', '/home']} component={Home} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/profile" component={Profile} />
-        <Route exact path="/doctors" component={Doctors} />
-        <Route exact path="/doctors/:id" component={Doctor} />
-        <Route exact path="/appointments" component={Appointments} />
-        <Route exact path="/appointments/new" component={NewAppointment} />
-        <Route exact path="/appointments/:id" component={Appointment} />
-      </Switch>
+      <NavBarr />
+      <main>
+        <Switch>
+          <Route exact path={['/', '/home']} component={Home} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/profile" component={Profile} />
+          <Route exact path="/doctors" component={Doctors} />
+          <Route exact path="/doctors/:id" component={Doctor} />
+          <Route exact path="/appointments" component={Appointments} />
+          <Route exact path="/appointments/new" component={NewAppointment} />
+          <Route exact path="/appointments/:id" component={Appointment} />
+        </Switch>
+      </main>
     </div>
   );
 };

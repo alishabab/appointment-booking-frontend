@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
 import { Redirect, Link } from 'react-router-dom';
@@ -51,8 +50,8 @@ const Doctors = () => {
     </div>
   ));
   return (
-    <div className="container">
-      <div className="text-center m-5">
+    <div className="container text-center">
+      <div className="m-5">
         <h3>LIST OF DOCTORS</h3>
         <p className="text-secondary">Please select a doctor to view details</p>
       </div>

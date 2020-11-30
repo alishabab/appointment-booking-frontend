@@ -11,13 +11,11 @@ const Profile = () => {
 
   return (
     <div className="container">
-      <header className="jumbotron">
-        <h3>
-          <strong>{currentUser.user.name}</strong>
-          {' '}
-          Profile
-        </h3>
-      </header>
+      <h3>
+        <strong>{currentUser.user.name}</strong>
+        {' '}
+        Profile
+      </h3>
       <p>
         <strong>Token:</strong>
         {' '}
