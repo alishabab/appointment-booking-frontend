@@ -41,13 +41,11 @@ const Appointments = () => {
 
   return (
     <div className="container">
-      <header className="jumbotron">
-        <h3>Appointments</h3>
-        {loading && <span className="spinner-border spinner-border-lg" />}
-        <div>
-          {appointments}
-        </div>
-      </header>
+      <h3>Appointments</h3>
+      {loading && <span className="spinner-border spinner-border-lg" />}
+      <div>
+        {appointments}
+      </div>
     </div>
   );
 };

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import SocialIcons from './UI/SocialIcons';
 import { logout } from '../actions/auth';
 import logo from '../assets/images/logo.png';
 import classes from '../styles/Sidebar.module.css';
@@ -54,7 +55,7 @@ const Sidebar = () => {
             </li>
             <li>
               <a href="/login" onClick={logOut} className={classes.navlink}>
-                LogOut
+                Logout
               </a>
             </li>
           </ul>
@@ -72,6 +73,10 @@ const Sidebar = () => {
             </li>
           </ul>
         )}
+        <footer className={classes.social}>
+          <SocialIcons />
+          <p>&copy;2020, ABC Hospital</p>
+        </footer>
       </nav>
     </div>
   );

@@ -7,7 +7,8 @@ main {
   margin-left: 190px;
 }
 
-ul {
+ul,
+li {
   list-style: none;
   padding: 0;
   margin: 0;

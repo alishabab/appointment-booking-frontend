@@ -1,0 +1,39 @@
+.Doctor {
+  padding-top: 100px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.doctorImg {
+  max-height: 70vh;
+}
+
+.badge {
+  padding: 5px 10px;
+  margin: 0;
+}
+
+.badgeSecondary {
+  background-color: lightgray;
+}
+
+.btn {
+  display: inline-block;
+  color: white;
+  padding: 10px;
+  margin: 50px;
+  border-radius: 20px;
+  background-color: rgba(150, 191, 1);
+}
+
+.btn:hover {
+  text-decoration: none;
+  background-color: rgba(150, 191, 1, 0.7);
+  color: black;
+}
+
+@media (max-width: 600px) {
+  .Doctor {
+    flex-direction: column;
+  }
+}
