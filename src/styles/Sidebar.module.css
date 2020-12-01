@@ -50,6 +50,11 @@
   background-color: rgba(150, 191, 1);
 }
 
+.logo {
+  width: 150px;
+  padding-bottom: 20px;
+}
+
 .main {
   margin-left: 160px; /* Same as the width of the sidenav */
   font-size: 28px; /* Increased text to enable scrolling */

@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { logout } from '../actions/auth';
+import logo from '../assets/images/logo.png';
 import classes from '../styles/Sidebar.module.css';
 
 const Sidebar = () => {
@@ -25,8 +26,8 @@ const Sidebar = () => {
         <FontAwesomeIcon icon={faBars} size="2x" />
       </button>
       <nav className={`${classes.sidenav} ${classes.toggle}`}>
-        <NavLink exact to="/" className={classes.navlink} activeClassName={classes.active}>
-          Home
+        <NavLink exact to="/">
+          <img src={logo} alt="logo" className={classes.logo} />
         </NavLink>
         {currentUser
             && (
