@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Redirect, useParams } from 'react-router-dom';
+import { Redirect, useParams, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import UserService from '../services/user.service';
 
 const Appointment = () => {
   const [content, setContent] = useState('');
+  const [doctor, setDoctor] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const { user: currentUser } = useSelector(state => state.auth);
@@ -16,8 +17,8 @@ const Appointment = () => {
   useEffect(() => {
     UserService.getAppointment(currentUser.user.id, id).then(
       response => {
-        setLoading(false);
         setContent(response.data);
+        return response.data.doctor_id;
       },
       error => {
         setLoading(false);
@@ -30,18 +31,30 @@ const Appointment = () => {
 
         setContent(message);
       },
-    );
+    ).then(doctorId => UserService.getDoctor(doctorId))
+      .then(response => {
+        setLoading(false);
+        setDoctor(response.data);
+      });
   }, []);
   return (
     <div className="container">
       <header className="jumbotron">
         {loading && <span className="spinner-border spinner-border-lg" />}
         {
-          !error && (
-          <p>
-            Doctor Id:
-            {content.doctor_id}
-          </p>
+          doctor && (
+          <div>
+            <p>
+              With &nbsp;
+              <Link to={`/doctors/${doctor.id}`}>
+                {doctor.name}
+              </Link>
+            </p>
+            <p>
+              On &nbsp;
+              {new Date(content.appointment_date).toLocaleString()}
+            </p>
+          </div>
           )
         }
         {

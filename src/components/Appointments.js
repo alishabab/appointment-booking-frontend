@@ -32,18 +32,33 @@ const Appointments = () => {
     return <Redirect to="/login" />;
   }
 
-  const appointments = content && content.map(appointment => (
-    <Link to={`/appointments/${appointment.id}`} key={appointment.id}>
-      <p>{appointment.appointment_date}</p>
-      <p>{content.doctor_id}</p>
-    </Link>
-  ));
+  const appointments = content && content.map(appointment => {
+    const d = new Date(appointment.appointment_date);
+    const date = d.toDateString();
+    const time = d.toLocaleTimeString();
+    return (
+      <Link to={`/appointments/${appointment.id}`} key={appointment.id}>
+        <div className="card m-4">
+          <div className="card-body">
+            <p>
+              On &nbsp;
+              {date}
+            </p>
+            <p>
+              at &nbsp;
+              {time}
+            </p>
+          </div>
+        </div>
+      </Link>
+    );
+  });
 
   return (
-    <div className="container">
+    <div className="container text-center">
       <h3>Appointments</h3>
       {loading && <span className="spinner-border spinner-border-lg" />}
-      <div>
+      <div className="d-flex flex-wrap">
         {appointments}
       </div>
     </div>

@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable no-console */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-underscore-dangle */
 import React, { useState, useRef, useEffect } from 'react';
@@ -72,16 +71,12 @@ const NewAppointment = ({ location }) => {
 
     if (checkBtn.current.context._errors.length === 0) {
       userService.postAppointment(currentUser.user.id, doctorId, appointmentDate)
-        .then(response => {
-          console.log(doctorId);
-          console.log(response);
+        .then(() => {
           setLoading(false);
           setSuccessful(true);
         })
-        .catch(error => {
+        .catch(() => {
           dispatch(setMessage('Something went wrong'));
-          console.log(doctorId);
-          console.log(error.response);
           setLoading(false);
           setSuccessful(false);
         });
@@ -101,7 +96,6 @@ const NewAppointment = ({ location }) => {
   if (!currentUser) {
     return <Redirect to="/login" />;
   }
-  console.log(location);
   if (successful) {
     return <Redirect to="/appointments" />;
   }

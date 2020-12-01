@@ -51,7 +51,7 @@ const Doctors = () => {
   ));
   return (
     <div className="container text-center">
-      <div className="m-5">
+      <div>
         <h3>LIST OF DOCTORS</h3>
         <p className="text-secondary">Please select a doctor to view details</p>
       </div>

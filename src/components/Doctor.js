@@ -33,7 +33,9 @@ const Doctor = () => {
   }, []);
   return (
     <div className="container">
-      {loading && <span className="spinner-border spinner-border-lg" />}
+      <div className="text-center">
+        {loading && <span className="spinner-border spinner-border-lg" />}
+      </div>
       <div className={classes.Doctor}>
         <img src={content.image} alt={content.name} className={classes.doctorImg} />
         <div>
