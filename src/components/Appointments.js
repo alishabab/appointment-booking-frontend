@@ -7,6 +7,7 @@ const Appointments = () => {
   const [content, setContent] = useState('');
   const [loading, setLoading] = useState(true);
   const { user: currentUser } = useSelector(state => state.auth);
+  let appointments;
 
   useEffect(() => {
     if (currentUser) {
@@ -32,27 +33,33 @@ const Appointments = () => {
     return <Redirect to="/login" />;
   }
 
-  const appointments = content && content.map(appointment => {
-    const d = new Date(appointment.appointment_date);
-    const date = d.toDateString();
-    const time = d.toLocaleTimeString();
-    return (
-      <Link to={`/appointments/${appointment.id}`} key={appointment.id}>
-        <div className="card m-4">
-          <div className="card-body">
-            <p>
-              On &nbsp;
-              {date}
-            </p>
-            <p>
-              at &nbsp;
-              {time}
-            </p>
-          </div>
-        </div>
-      </Link>
+  if (!loading && content.length === 0) {
+    appointments = (
+      <h4>
+        You do not have any appointment. Create one
+        <Link to="/appointments/new">
+          here
+        </Link>
+      </h4>
     );
-  });
+  } else {
+    appointments = content && content.map(appointment => {
+      const d = new Date(appointment.appointment_date);
+      const date = d.toUTCString();
+      return (
+        <Link to={`/appointments/${appointment.id}`} key={appointment.id}>
+          <div className="card m-4">
+            <div className="card-body">
+              <p>
+                On &nbsp;
+                {date}
+              </p>
+            </div>
+          </div>
+        </Link>
+      );
+    });
+  }
 
   return (
     <div className="container text-center">

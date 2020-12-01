@@ -4,12 +4,11 @@
 import React, { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-
 import Form from 'react-validation/build/form';
 import Input from 'react-validation/build/input';
 import CheckButton from 'react-validation/build/button';
 import { isEmail } from 'validator';
-
+import { useAlert } from 'react-alert';
 import { register } from '../actions/auth';
 
 const required = value => {
@@ -68,7 +67,7 @@ const Register = () => {
 
   const { message } = useSelector(state => state.message);
   const dispatch = useDispatch();
-
+  const alert = useAlert();
   const onChangeName = e => {
     const name = e.target.value;
     setName(name);
@@ -96,7 +95,11 @@ const Register = () => {
         .then(() => {
           setLoading(false);
           setSuccessful(true);
-          window.location.reload();
+          // window.location.reload();
+          alert.show('Account created', {
+            type: 'success',
+            timeout: 5000,
+          });
         })
         .catch(() => {
           setLoading(false);

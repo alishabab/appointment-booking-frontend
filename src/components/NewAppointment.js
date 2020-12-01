@@ -7,6 +7,7 @@ import { Redirect } from 'react-router-dom';
 import Form from 'react-validation/build/form';
 import Input from 'react-validation/build/input';
 import CheckButton from 'react-validation/build/button';
+import { useAlert } from 'react-alert';
 import userService from '../services/user.service';
 import { setMessage } from '../actions/message';
 import getDoctors from '../actions/user';
@@ -34,6 +35,7 @@ const NewAppointment = ({ location }) => {
   const { message } = useSelector(state => state.message);
   const { doctors } = useSelector(state => state.user);
   const dispatch = useDispatch();
+  const alert = useAlert();
   useEffect(() => {
     if (location.doctorId) {
       setDoctorId(location.doctorId);
@@ -74,6 +76,10 @@ const NewAppointment = ({ location }) => {
         .then(() => {
           setLoading(false);
           setSuccessful(true);
+          alert.show('Appointment created', {
+            type: 'success',
+            timeout: 2000,
+          });
         })
         .catch(() => {
           dispatch(setMessage('Something went wrong'));
