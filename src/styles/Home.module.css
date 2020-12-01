@@ -6,6 +6,7 @@
   background-image: url('https://previews.customer.envatousercontent.com/files/161385650/hospital_590.jpg');
   height: 100vh;
   color: white;
+  margin-top: -100px;
 }
 
 .Overlay {
