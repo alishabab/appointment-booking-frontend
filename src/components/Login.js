@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import React, { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
@@ -50,6 +49,7 @@ const Login = () => {
 
     form.current.validateAll();
 
+    // eslint-disable-next-line no-underscore-dangle
     if (checkBtn.current.context._errors.length === 0) {
       dispatch(login(email, password))
         .then(() => {

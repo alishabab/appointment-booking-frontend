@@ -1,6 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable no-underscore-dangle */
 import React, { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
@@ -90,12 +87,12 @@ const Register = () => {
 
     form.current.validateAll();
 
+    // eslint-disable-next-line no-underscore-dangle
     if (checkBtn.current.context._errors.length === 0) {
       dispatch(register(name, email, password))
         .then(() => {
           setLoading(false);
           setSuccessful(true);
-          // window.location.reload();
           alert.show('Account created', {
             type: 'success',
             timeout: 5000,

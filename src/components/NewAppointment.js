@@ -1,9 +1,7 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable no-underscore-dangle */
 import React, { useState, useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Form from 'react-validation/build/form';
 import Input from 'react-validation/build/input';
 import CheckButton from 'react-validation/build/button';
@@ -71,6 +69,7 @@ const NewAppointment = ({ location }) => {
 
     form.current.validateAll();
 
+    // eslint-disable-next-line no-underscore-dangle
     if (checkBtn.current.context._errors.length === 0) {
       userService.postAppointment(currentUser.user.id, doctorId, appointmentDate)
         .then(() => {
@@ -153,4 +152,9 @@ const NewAppointment = ({ location }) => {
   );
 };
 
+NewAppointment.propTypes = {
+  location: PropTypes.shape({
+    doctorId: PropTypes.number,
+  }).isRequired,
+};
 export default NewAppointment;
