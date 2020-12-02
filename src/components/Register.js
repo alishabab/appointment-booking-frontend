@@ -110,7 +110,7 @@ const Register = () => {
     }
   };
   if (successful) {
-    return <Redirect to="/profile" />;
+    return <Redirect to="/doctors" />;
   }
   return (
     <div className="col-md-12">

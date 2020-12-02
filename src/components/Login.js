@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-underscore-dangle */
 import React, { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -69,7 +68,7 @@ const Login = () => {
   };
 
   if (isLoggedIn) {
-    return <Redirect to="/profile" />;
+    return <Redirect to="/doctors" />;
   }
 
   return (
@@ -85,6 +84,7 @@ const Login = () => {
           <div className="form-group">
             <label htmlFor="email">Email</label>
             <Input
+              id="email"
               type="text"
               className="form-control"
               name="email"
