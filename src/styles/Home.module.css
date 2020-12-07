@@ -1,0 +1,32 @@
+.Home {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  background-image: url('https://previews.customer.envatousercontent.com/files/161385650/hospital_590.jpg');
+  height: 100vh;
+  color: white;
+  margin-top: -100px;
+}
+
+.Overlay {
+  background: rgba(150, 191, 1, 0.7);
+  overflow: hidden;
+  height: 100%;
+  z-index: 2;
+}
+
+.Button {
+  background-color: white;
+  padding: 10px;
+  color: rgba(150, 191, 1);
+  border-radius: 30px;
+}
+
+.Select {
+  padding: 10px;
+  outline: none;
+  border: 1px solid white;
+  color: white;
+  background-color: rgba(150, 191, 1);
+}
